@@ -1,4 +1,4 @@
 class Answer < ActiveRecord::Base
-	has_one :question
+	belongs_to :question
 	has_one :score
 end

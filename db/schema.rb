@@ -11,13 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141116181354) do
+ActiveRecord::Schema.define(version: 20141116183243) do
 
   create_table "answers", force: true do |t|
     t.integer  "answer"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "question_id"
   end
+
+  add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
 
   create_table "artifacts", force: true do |t|
     t.string   "name"
@@ -35,8 +38,10 @@ ActiveRecord::Schema.define(version: 20141116181354) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "route_id"
+    t.integer  "question_id"
   end
 
+  add_index "practices", ["question_id"], name: "index_practices_on_question_id", using: :btree
   add_index "practices", ["route_id"], name: "index_practices_on_route_id", using: :btree
 
   create_table "projects", force: true do |t|
@@ -76,12 +81,18 @@ ActiveRecord::Schema.define(version: 20141116181354) do
     t.integer  "score_traditional"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "answer_id"
   end
+
+  add_index "scores", ["answer_id"], name: "index_scores_on_answer_id", using: :btree
 
   create_table "values", force: true do |t|
     t.text     "value"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "route_id"
   end
+
+  add_index "values", ["route_id"], name: "index_values_on_route_id", using: :btree
 
 end
