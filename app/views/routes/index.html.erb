@@ -1,0 +1,7 @@
+<% if @routes.size > 0 %>
+	<% @routes.each do |route| %>
+		<p> Route: <%=route.route%><p>
+	<% end %>
+<% else %>
+	<p>There is no Routes</p>
+<% end %>
